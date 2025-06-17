@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomized Boxes</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Container for the grid of boxes */
+        .box-container {
+            display: grid;
+            grid-template-columns: repeat(15, 1fr); /* Increased columns for smaller boxes */
+            grid-template-rows: repeat(15, 1fr); /* Increased rows for smaller boxes */
+            gap: 5px; /* Reduced gap for closer alignment */
+            width: 80%;
+            height: 80%;
+            position: absolute;
+        }
+        
+        /* Styling for individual boxes */
+        .box {
+            background: rgba(0, 128, 128, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        /* Box Hover Effect */
+        .box:hover {
+            background: rgba(255, 153, 0, 0.8);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 153, 0, 0.8);
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <div class="box-container" id="boxContainer"></div>
+
+    <script>document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('boxContainer');
+        const boxCount = 100; // Total number of boxes
+    
+        // Generate random boxes
+        for (let i = 0; i < boxCount; i++) {
+            const box = document.createElement('div');
+            box.classList.add('box');
+    
+            // Randomize width, height, and border-radius
+            const width = Math.floor(Math.random() * (100 - 30 + 1)) + 30;  // Random width between 30px and 100px
+            const height = Math.floor(Math.random() * (100 - 30 + 1)) + 30; // Random height between 30px and 100px
+            const borderRadius = Math.floor(Math.random() * 30);  // Random border-radius between 0 and 30px
+    
+            // Apply random values to the box styles
+            box.style.width = `${width}px`;
+            box.style.height = `${height}px`;
+            box.style.borderRadius = `${borderRadius}px`;
+    
+            container.appendChild(box);
+        }
+    });
+    
+</script>
+</body>
+</html>
